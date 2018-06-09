@@ -12,5 +12,3 @@ router.post('/signin', requireSignin, signinAuth);
 router.post('/signup', signupAuth);
 
 export default router;
-
-
