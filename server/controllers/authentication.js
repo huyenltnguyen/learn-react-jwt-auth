@@ -14,6 +14,7 @@ export const signupAuth = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  console.log(req.body);
   // Check if a user exists in the DB
   User.findOne({ email }, (err, foundUser) => {
     if (err) {
