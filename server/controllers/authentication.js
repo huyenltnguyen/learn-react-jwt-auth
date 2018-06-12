@@ -6,7 +6,7 @@ const generateTokenForUser = (user) => {
   return jwt.sign(
     { sub: user.id },
     config.secret,
-    { expiresIn: '3d' }
+    { expiresIn: '1m' }
   );
 };
 

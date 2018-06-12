@@ -29,7 +29,6 @@ class SignUp extends React.Component {
 
     const signUpUrl = 'http://localhost:3001/api/auth/signup';
 
-
     fetch(signUpUrl, {
       method: 'post',
       headers: {
