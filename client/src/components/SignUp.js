@@ -6,7 +6,8 @@ class SignUp extends React.Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      message: ''
     }
   }
 
@@ -18,7 +19,16 @@ class SignUp extends React.Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
+
+    if (!this.state.email || !this.state.password) {
+      this.setState({
+        message: 'Please enter your email and password.'
+      });
+      return;
+    }
+
     const signUpUrl = 'http://localhost:3001/api/auth/signup';
+
 
     fetch(signUpUrl, {
       method: 'post',
@@ -33,15 +43,16 @@ class SignUp extends React.Component {
     .then((data) => {
       console.log(data.message);
 
+      this.setState({
+        email: '',
+        password: '',
+        message: data.message
+      });
+
       if (data.token) {
         sessionStorage.setItem('jwtToken', data.token);
         this.props.history.push('/');
       }
-
-      this.setState({
-        email: '',
-        password: ''
-      });
     });
   }
 
@@ -49,6 +60,7 @@ class SignUp extends React.Component {
     return (
       <div>
         <h1>Sign Up Page</h1>
+        <p>{ this.state.message }</p>
         <form onSubmit={ this.handleFormSubmit }>
           <label>
             Email:

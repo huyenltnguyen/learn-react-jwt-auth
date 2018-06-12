@@ -14,17 +14,10 @@ export const signupAuth = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  console.log(req.body);
   // Check if a user exists in the DB
   User.findOne({ email }, (err, foundUser) => {
     if (err) {
       res.send(err);
-    }
-
-    // if user does not provide both email and password,
-    // sets the HTTP status to 422 and send a message
-    if (!email || !password) {
-      return res.status(422).json({ message: 'You must provide your email and password' });
     }
 
     // if email already exists,
