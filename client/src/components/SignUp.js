@@ -49,7 +49,7 @@ class SignUp extends React.Component {
       });
 
       if (data.token) {
-        sessionStorage.setItem('jwtToken', data.token);
+        sessionStorage.setItem('accessToken', data.token);  // store token in session storage
         this.props.history.push('/');
       }
     });
