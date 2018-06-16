@@ -3,23 +3,15 @@ import { connect } from 'react-redux';
 
 import { validateAccessToken } from '../actions';
 
-class Resources extends React.Component {
-  componentDidMount() {
-    const accessToken = sessionStorage.getItem('accessToken');
-    this.props.validateAccessToken(accessToken);
-  }
+const Resources = (props) => {
+  const accessToken = sessionStorage.getItem('accessToken');
+  props.validateAccessToken(accessToken);
 
-  render() {
-    if (!this.props.accessTokenIsValid) {
-      return <p>Please sign in to access this page.</p>
-    }
-
-    return (
-      <div>
-        <p>Some secret stuff</p>
-      </div>
-    );
-  }
+  return (
+    !props.accessTokenIsValid
+    ? <p>Please sign in to access this page.</p>
+    : <p>Some secret stuff</p>
+  );
 };
 
 const mapStateToProps = (state) => {
