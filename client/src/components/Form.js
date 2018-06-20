@@ -38,20 +38,22 @@ class Form extends React.Component {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.message);
+      console.log(data);
 
       this.setState({
         email: '',
         password: '',
-        message: data.message
+        message: data.message ? data.message : ''
       });
 
       if (data.token) {
         sessionStorage.setItem('accessToken', data.token);  // store token in session storage
+
+        // TODO: set isLoggedIn state
         this.props.history.push('/');
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => { throw err });
   }
 
   render() {

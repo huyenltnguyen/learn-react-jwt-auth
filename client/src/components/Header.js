@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+import SignOut from './SignOut';
+
+const Header = (props) => {
   return (
     <header>
       <nav>
         <ul>
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/resources'>Resources</Link></li>
-          <li><Link to='/signin'>Sign In</Link></li>
-          <li><Link to='/signup'>Sign Up</Link></li>
+          {
+            props.accessTokenIsValid
+            ? <SignOut />
+            : <Fragment>
+                <li><Link to='/signin'>Sign In</Link></li>
+                <li><Link to='/signup'>Sign Up</Link></li>
+              </Fragment>
+          }
         </ul>
       </nav>
     </header>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    accessTokenIsValid: state.accessTokenIsValid
+  };
+}
+
+export default connect(mapStateToProps)(Header);
