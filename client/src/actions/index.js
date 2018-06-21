@@ -36,11 +36,17 @@ export const validateAccessToken = (accessToken) => {
         type: types.VALIDATE_ACCESS_TOKEN,
         payload: false
       });
+
+      // if the accessToken is invalid, log user out
+      // and delete sessionStorage
+      dispatch(setUserLogInStatus(false));
     })
   };
 }
 
 export const setUserLogInStatus = (isLoggedIn) => {
+  sessionStorage.removeItem('accessToken');
+
   return {
     type: types.SET_USER_LOG_IN_STATUS,
     payload: isLoggedIn

@@ -5,7 +5,6 @@ import { setUserLogInStatus } from '../actions';
 
 class SignOut extends React.Component {
   onSignOut = () => {
-    sessionStorage.removeItem('accessToken');
     this.props.setUserLogInStatus(false);
   }
 
