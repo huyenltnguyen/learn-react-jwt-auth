@@ -1,6 +1,6 @@
 import types from '../actions/actionTypes';
 
-export function validateAccessToken(accessToken) {
+export const validateAccessToken = (accessToken) => {
   const tokenUrl = 'http://localhost:3001/api/auth/token';
 
   // if accessToken doesn't exist in sessionStorage
@@ -22,7 +22,6 @@ export function validateAccessToken(accessToken) {
     .then((res) => res.json())
     // data is available if accessToken is valid
     .then((data) => {
-      console.log(data);
       dispatch({
         type: types.VALIDATE_ACCESS_TOKEN,
         payload: true
@@ -38,5 +37,12 @@ export function validateAccessToken(accessToken) {
         payload: false
       });
     })
+  };
+}
+
+export const setUserLogInStatus = (isLoggedIn) => {
+  return {
+    type: types.SET_USER_LOG_IN_STATUS,
+    payload: isLoggedIn
   };
 }

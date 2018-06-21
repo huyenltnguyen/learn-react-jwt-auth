@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import AuthReducer from './reducer_auth';
+import AccessTokenReducer from './reducer_accessToken';
+import userLogInReducer from './reducer_userLogIn';
 
 const rootReducer = combineReducers({
-    accessTokenIsValid: AuthReducer
+    accessTokenIsValid: AccessTokenReducer,
+    userIsLoggedIn: userLogInReducer
 });
 
 export default rootReducer;

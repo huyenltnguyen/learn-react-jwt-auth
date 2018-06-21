@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setUserLogInStatus } from '../actions';
 
 class SignOut extends React.Component {
   onSignOut = () => {
-    console.log('signed out');
-    //sessionStorage.removeItem('accessToken');
-
-    // TODO: set isLoggedIn state
+    sessionStorage.removeItem('accessToken');
+    this.props.setUserLogInStatus(false);
   }
 
   render() {
@@ -14,4 +14,4 @@ class SignOut extends React.Component {
   }
 };
 
-export default SignOut;
+export default connect(null, { setUserLogInStatus })(SignOut);

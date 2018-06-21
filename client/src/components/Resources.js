@@ -8,7 +8,7 @@ const Resources = (props) => {
   props.validateAccessToken(accessToken);
 
   return (
-    !props.accessTokenIsValid
+    !props.accessTokenIsValid && !props.userIsLoggedIn
     ? <p>Please sign in to access this page.</p>
     : <p>Some secret stuff</p>
   );
@@ -16,7 +16,8 @@ const Resources = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    accessTokenIsValid: state.accessTokenIsValid
+    accessTokenIsValid: state.accessTokenIsValid,
+    userIsLoggedIn: state.userIsLoggedIn
   };
 };
 

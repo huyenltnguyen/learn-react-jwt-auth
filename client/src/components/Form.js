@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setUserLogInStatus } from '../actions';
 
 class Form extends React.Component {
   constructor(props) {
@@ -38,8 +40,6 @@ class Form extends React.Component {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-
       this.setState({
         email: '',
         password: '',
@@ -49,7 +49,7 @@ class Form extends React.Component {
       if (data.token) {
         sessionStorage.setItem('accessToken', data.token);  // store token in session storage
 
-        // TODO: set isLoggedIn state
+        this.props.setUserLogInStatus(true);
         this.props.history.push('/');
       }
     })
@@ -88,4 +88,4 @@ class Form extends React.Component {
   }
 };
 
-export default Form;
+export default connect(null, { setUserLogInStatus })(Form);

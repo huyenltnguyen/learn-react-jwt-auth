@@ -12,7 +12,7 @@ const Header = (props) => {
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/resources'>Resources</Link></li>
           {
-            props.accessTokenIsValid
+            props.userIsLoggedIn
             ? <SignOut />
             : <Fragment>
                 <li><Link to='/signin'>Sign In</Link></li>
@@ -27,7 +27,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    accessTokenIsValid: state.accessTokenIsValid
+    userIsLoggedIn: state.userIsLoggedIn
   };
 }
 
