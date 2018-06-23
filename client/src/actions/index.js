@@ -30,7 +30,7 @@ export const validateAccessToken = (accessToken) => {
     // data is NOT available if accessToken is invalid
     // since Passport responds with a 401 status code
     // and the route handlers are not invoked
-    // (http://www.passportjs.org/docs/authenticate/)
+    // REF: http://www.passportjs.org/docs/authenticate/
     .catch(() => {
       dispatch({
         type: types.VALIDATE_ACCESS_TOKEN,

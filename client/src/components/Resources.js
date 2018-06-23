@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { validateAccessToken } from '../actions';
 
 // might use react-redux-lifecycle with functional component
-// https://stackoverflow.com/questions/44756488/react-stateless-functional-components-and-component-lifecycle
+// REF: https://stackoverflow.com/questions/44756488/react-stateless-functional-components-and-component-lifecycle
 const Resources = (props) => {
   const accessToken = sessionStorage.getItem('accessToken');
   props.validateAccessToken(accessToken);

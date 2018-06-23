@@ -33,7 +33,7 @@ class Form extends React.Component {
       method: 'post',
       headers: {
         // add this to fix the issue that server doesn't receive body
-        // https://stackoverflow.com/questions/29775797/fetch-post-json-data
+        // REF: https://stackoverflow.com/questions/29775797/fetch-post-json-data
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ ...this.state })
@@ -47,7 +47,8 @@ class Form extends React.Component {
       });
 
       if (data.token) {
-        sessionStorage.setItem('accessToken', data.token);  // store token in session storage
+        // store token in session storage
+        sessionStorage.setItem('accessToken', data.token);
 
         this.props.setUserLogInStatus(true);
         this.props.history.push('/');
